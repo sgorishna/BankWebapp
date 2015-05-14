@@ -11,16 +11,16 @@
 <body>
   
 
-    <form method="POST" action='CustomerController' name="formAddCustomer">
+    <form method="POST" action='new_customer.php' name="formAddCustomer">
         Customer ID : <input type="text" readonly="readonly" name="idCustomer"
             value="<c:out value="${customer.idCustomer}" />" /> <br /> 
          Name : <input
-            type="text" name="Name"
+            type="text" name="name"
             value="<c:out value="${customer.name}" />" /> <br /> 
-        Gender :  <input TYPE="radio" NAME="radios" VALUE="male" CHECKED>
+        Gender :  <input TYPE="radio" NAME="gender" VALUE="male" CHECKED>
              Male
             <br>
-            <INPUT TYPE="radio" NAME="radios" VALUE="female">
+            <INPUT TYPE="radio" NAME="gender" VALUE="female">
              Female
             <br>
         

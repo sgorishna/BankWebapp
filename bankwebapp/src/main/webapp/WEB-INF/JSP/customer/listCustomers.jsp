@@ -21,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${customers}" var="customer">
+            <c:forEach items="${requestScope.customers}" var="customer">
                 <tr>
                     <td><c:out value="${customer.idCustomer}" /></td>
                     <td><c:out value="${customer.name}" /></td>
@@ -34,6 +34,6 @@
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="CustomerController?action=insert">Add Customer</a></p>
+    <p><a href="new_customer.php">Add Customer</a></p>
 </body>
 </html>

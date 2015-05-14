@@ -10,20 +10,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import com.webapp.db.Database;
+import com.webapp.db.DBUtill;
 import com.webapp.model.Customer;
 
 public class CustomerDao {
 
-	private Connection connection;
-
-	public CustomerDao() {
-		connection = Database.getConnection();
-	}
-
 	public void addCustomer(Customer customer) {
 
+		Connection connection = null;
+
 		try {
+			connection = DBUtill.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement("insert into customer(name,gender) values (?, ?)");
 
 			preparedStatement.setString(1, customer.getName());
@@ -33,11 +30,14 @@ public class CustomerDao {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBUtill.closeConnection(connection);
 		}
 
 	}
 
 	public List<Customer> getAllCustomers() {
+		Connection connection = null;
 
 		ArrayList<Customer> customerList = new ArrayList<Customer>();
 
@@ -45,7 +45,8 @@ public class CustomerDao {
 		ResultSet rs = null;
 
 		try {
-			//
+
+			connection = DBUtill.getConnection();
 			stmt = connection.createStatement();
 			rs = stmt.executeQuery("select * from customer order by name");
 			while (rs.next()) {
@@ -60,14 +61,19 @@ public class CustomerDao {
 
 		} catch (SQLException ex) {
 			Logger.getLogger(CustomerDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			DBUtill.closeConnection(connection);
 		}
 
 		return customerList;
 	}
 
 	public Customer getCustomerById(long IdCustomer) {
+
+		Connection connection = null;
 		Customer customer = new Customer();
 		try {
+			connection = DBUtill.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement("select * from customer where idCustomer=?");
 			preparedStatement.setLong(1, IdCustomer);
 			ResultSet rs = preparedStatement.executeQuery();
@@ -81,6 +87,8 @@ public class CustomerDao {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			DBUtill.closeConnection(connection);
 		}
 
 		return customer;
