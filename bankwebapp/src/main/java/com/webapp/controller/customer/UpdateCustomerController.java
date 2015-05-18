@@ -9,14 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.webapp.actions.AbstractServletHandler;
 import com.webapp.model.Customer;
 
-public class AddCustomerController extends AbstractServletHandler {
+public class UpdateCustomerController extends AbstractServletHandler {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		gotoToJSP("customer/customer.jsp", request, response);
+		long IdCustomer = Long.parseLong(request.getParameter("IdCustomer"));
+		Customer customer = getCustomerDao().getCustomerById(IdCustomer);
+		request.setAttribute("customer", customer);
+
+		gotoToJSP("customer/updateCustomer.jsp", request, response);
 	}
 
 	@Override
@@ -26,7 +30,8 @@ public class AddCustomerController extends AbstractServletHandler {
 		customer.setName(request.getParameter("name"));
 		customer.setGender(request.getParameter("gender"));
 
-		getCustomerDao().addCustomer(customer);
+		customer.setIdCustomer(Long.parseLong(request.getParameter("idCustomer")));
+		getCustomerDao().updateCustomer(customer);
 
 		request.setAttribute("customers", getCustomerDao().getAllCustomers());
 		gotoToJSP("customer/listCustomers.jsp", request, response);

@@ -1,15 +1,19 @@
 package com.webapp.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 public class Account {
 
 	private long idAccount;
-	private String customer;
+	private long idCustomer;
+	private String сustomerName;
+	private long idAccountType;
 	private String accountType;
-	private String currency;
+	private long idCurrency;
+	private String сurrency;
 	private long accountNumber;
-	private int balance;
+	private BigDecimal balance;
 	private Timestamp created;
 	private Timestamp updated;
 
@@ -21,28 +25,28 @@ public class Account {
 		this.idAccount = idAccount;
 	}
 
-	public String getCustomer() {
-		return customer;
+	public long getIdCustomer() {
+		return idCustomer;
 	}
 
-	public void setCustomer(String customer) {
-		this.customer = customer;
+	public void setIdCustomer(long idCustomer) {
+		this.idCustomer = idCustomer;
 	}
 
-	public String getAccountType() {
-		return accountType;
+	public long getIdAccountType() {
+		return idAccountType;
 	}
 
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
+	public void setIdAccountType(long idAccountType) {
+		this.idAccountType = idAccountType;
 	}
 
-	public String getCurrency() {
-		return currency;
+	public long getIdCurrency() {
+		return idCurrency;
 	}
 
-	public void setCurrency(String currency) {
-		this.currency = currency;
+	public void setIdCurrency(long idCurrency) {
+		this.idCurrency = idCurrency;
 	}
 
 	public long getAccountNumber() {
@@ -53,11 +57,11 @@ public class Account {
 		this.accountNumber = accountNumber;
 	}
 
-	public int getBalance() {
+	public BigDecimal getBalance() {
 		return balance;
 	}
 
-	public void setBalance(int balance) {
+	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
 
@@ -75,6 +79,30 @@ public class Account {
 
 	public void setCreated(Timestamp created) {
 		this.created = created;
+	}
+
+	public String getCustomerName() {
+		return сustomerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.сustomerName = customerName;
+	}
+
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
+	public String getCurrency() {
+		return сurrency;
+	}
+
+	public void setCurrency(String currency) {
+		this.сurrency = currency;
 	}
 
 }

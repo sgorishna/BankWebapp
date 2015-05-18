@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -92,5 +93,41 @@ public class CustomerDao {
 		}
 
 		return customer;
+	}
+
+	public void deleteCustomer(long IdCustomer) {
+		Connection conn = null;
+		try {
+			conn = DBUtill.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement("delete from customer where idCustomer=?");
+
+			preparedStatement.setLong(1, IdCustomer);
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtill.closeConnection(conn);
+		}
+	}
+
+	public void updateCustomer(Customer customer) {
+		Connection conn = null;
+		try {
+			conn = DBUtill.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement("update customer set name=?, gender=?, updated=?" + "where idCustomer=?");
+
+			preparedStatement.setString(1, customer.getName());
+			preparedStatement.setString(2, customer.getGender());
+			preparedStatement.setTimestamp(3, new Timestamp(new java.util.Date().getTime()));
+
+			preparedStatement.setLong(4, customer.getIdCustomer());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtill.closeConnection(conn);
+		}
 	}
 }

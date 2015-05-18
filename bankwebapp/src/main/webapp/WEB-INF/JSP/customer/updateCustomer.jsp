@@ -11,9 +11,9 @@
 <body>
   
 
-    <form method="POST" action='new_customer.php' name="formAddCustomer" >
-       <%--  Customer ID : <input type="text" readonly="readonly" name="idCustomer"
-            value="<c:out value="${customer.idCustomer}" />" /> <br />  --%>
+    <form method="POST" action='update_customer.php' name="formUpdateCustomer" >
+        Customer ID : <input type="text" readonly="readonly" name="idCustomer"
+            value="<c:out value="${customer.idCustomer}" />" /> <br /> 
          Name : <input
             type="text" name="name"
             value="<c:out value="${customer.name}" />" /> <br /> 

@@ -7,16 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.webapp.dao.AccountDao;
 import com.webapp.dao.CustomerDao;
 
 public abstract class AbstractServletHandler extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private CustomerDao customerВao;
+	private CustomerDao customerDao;
+	private AccountDao accountDao;
 
 	public AbstractServletHandler() {
 
-		this.customerВao = new CustomerDao();
+		this.customerDao = new CustomerDao();
+		this.accountDao = new AccountDao();
 
 	}
 
@@ -26,7 +29,11 @@ public abstract class AbstractServletHandler extends HttpServlet {
 	}
 
 	public CustomerDao getCustomerDao() {
-		return customerВao;
+		return customerDao;
+	}
+
+	public AccountDao getAccountDao() {
+		return accountDao;
 	}
 
 }

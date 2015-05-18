@@ -17,19 +17,20 @@
                 <th>Gender</th>
                 <th>Created</th>
                 <th>Updated</th>
-                <th colspan=2>Action</th>
+                <th colspan=3>Action</th>
             </tr>
         </thead>
         <tbody>
             <c:forEach items="${requestScope.customers}" var="customer">
                 <tr>
                     <td><c:out value="${customer.idCustomer}" /></td>
-                    <td><c:out value="${customer.name}" /></td>
+                    <td><a href="listAccounts.php?IdCustomer=<c:out value="${customer.idCustomer}"/>"><c:out value="${customer.name}" /></a></td>
                     <td><c:out value="${customer.gender}" /></td>
                     <td><c:out value="${customer.created}" /></td>
                     <td><c:out value="${customer.updated}" /></td>
-                    <td><a href="">Update</a></td>
-                    <td><a href="">Delete</a></td>
+                    <td><a href="update_customer.php?IdCustomer=<c:out value="${customer.idCustomer}"/>">Update</a></td>
+                    <td><a href="delete_customer.php?IdCustomer=<c:out value="${customer.idCustomer}"/>">Delete</a></td>
+                     <td><a href="add_account.php?IdCustomer=<c:out value="${customer.idCustomer}"/>">Add Account</a></td>
                 </tr>
             </c:forEach>
         </tbody>
