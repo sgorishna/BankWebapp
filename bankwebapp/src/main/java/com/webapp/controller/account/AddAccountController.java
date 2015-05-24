@@ -39,8 +39,7 @@ public class AddAccountController extends AbstractServletHandler {
 
 		getAccountDao().addAccount(account);
 
-		request.setAttribute("customers", getCustomerDao().getAllCustomers());
-		gotoToJSP("customer/listCustomers.jsp", request, response);
+		redirectRequest("/listAccounts.php?IdCustomer=" + account.getIdCustomer(), request, response);
 
 	}
 

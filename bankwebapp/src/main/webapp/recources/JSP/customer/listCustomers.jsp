@@ -13,6 +13,8 @@
         <thead>
             <tr>
                 <th>Customer Id</th>
+                <th>Login</th>
+                <th>Password</th>
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Created</th>
@@ -24,6 +26,8 @@
             <c:forEach items="${requestScope.customers}" var="customer">
                 <tr>
                     <td><c:out value="${customer.idCustomer}" /></td>
+                    <td><c:out value="${customer.login}" /></td>
+                     <td><c:out value="${customer.password}" /></td>
                     <td><a href="listAccounts.php?IdCustomer=<c:out value="${customer.idCustomer}"/>"><c:out value="${customer.name}" /></a></td>
                     <td><c:out value="${customer.gender}" /></td>
                     <td><c:out value="${customer.created}" /></td>

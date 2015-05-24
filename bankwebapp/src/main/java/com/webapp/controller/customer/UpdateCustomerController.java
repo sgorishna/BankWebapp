@@ -29,12 +29,13 @@ public class UpdateCustomerController extends AbstractServletHandler {
 		Customer customer = new Customer();
 		customer.setName(request.getParameter("name"));
 		customer.setGender(request.getParameter("gender"));
+		customer.setLogin(request.getParameter("login"));
+		customer.setPassword(request.getParameter("password"));
 
 		customer.setIdCustomer(Long.parseLong(request.getParameter("idCustomer")));
 		getCustomerDao().updateCustomer(customer);
 
-		request.setAttribute("customers", getCustomerDao().getAllCustomers());
-		gotoToJSP("customer/listCustomers.jsp", request, response);
+		redirectRequest("/customers.php", request, response);
 
 	}
 

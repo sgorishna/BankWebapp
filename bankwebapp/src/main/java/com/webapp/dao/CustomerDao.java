@@ -22,10 +22,12 @@ public class CustomerDao {
 
 		try {
 			connection = DBUtill.getConnection();
-			PreparedStatement preparedStatement = connection.prepareStatement("insert into customer(name,gender) values (?, ?)");
+			PreparedStatement preparedStatement = connection.prepareStatement("insert into customer(name,gender,login,password) values (?, ?, ?, ?)");
 
 			preparedStatement.setString(1, customer.getName());
 			preparedStatement.setString(2, customer.getGender());
+			preparedStatement.setString(3, customer.getLogin());
+			preparedStatement.setString(4, customer.getPassword());
 
 			preparedStatement.executeUpdate();
 
@@ -57,6 +59,8 @@ public class CustomerDao {
 				customer.setGender(rs.getString("gender"));
 				customer.setCreated(rs.getTimestamp("created"));
 				customer.setUpdated(rs.getTimestamp("updated"));
+				customer.setLogin(rs.getString("login"));
+				customer.setPassword(rs.getString("password"));
 				customerList.add(customer);
 			}
 
@@ -85,6 +89,8 @@ public class CustomerDao {
 				customer.setGender(rs.getString("gender"));
 				customer.setCreated(rs.getTimestamp("created"));
 				customer.setUpdated(rs.getTimestamp("updated"));
+				customer.setLogin(rs.getString("login"));
+				customer.setPassword(rs.getString("password"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,13 +121,16 @@ public class CustomerDao {
 		Connection conn = null;
 		try {
 			conn = DBUtill.getConnection();
-			PreparedStatement preparedStatement = conn.prepareStatement("update customer set name=?, gender=?, updated=?" + "where idCustomer=?");
+			PreparedStatement preparedStatement = conn.prepareStatement("update customer set name=?, gender=?, updated=?, login=?, password=?" + " where idCustomer=?");
 
 			preparedStatement.setString(1, customer.getName());
 			preparedStatement.setString(2, customer.getGender());
 			preparedStatement.setTimestamp(3, new Timestamp(new java.util.Date().getTime()));
 
-			preparedStatement.setLong(4, customer.getIdCustomer());
+			preparedStatement.setString(4, customer.getLogin());
+			preparedStatement.setString(5, customer.getPassword());
+
+			preparedStatement.setLong(6, customer.getIdCustomer());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -130,4 +139,34 @@ public class CustomerDao {
 			DBUtill.closeConnection(conn);
 		}
 	}
+
+	public Customer findByLogin(String login) {
+
+		Connection connection = null;
+		Customer customer = new Customer();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from customer where login=?");
+			preparedStatement.setString(1, login);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				customer.setIdCustomer(rs.getLong("idCustomer"));
+				customer.setLogin(rs.getString("login"));
+				customer.setPassword(rs.getString("password"));
+				customer.setName(rs.getString("name"));
+				customer.setGender(rs.getString("gender"));
+				customer.setCreated(rs.getTimestamp("created"));
+				customer.setUpdated(rs.getTimestamp("updated"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return customer;
+
+	}
+
 }

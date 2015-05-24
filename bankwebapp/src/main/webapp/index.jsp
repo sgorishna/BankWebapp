@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:forward page="/customers.php" />
+<jsp:forward page="/login.php" />
 </body>
 </html>

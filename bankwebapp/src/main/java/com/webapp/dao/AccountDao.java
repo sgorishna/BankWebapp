@@ -101,4 +101,34 @@ public class AccountDao {
 		}
 	}
 
+	public Account getAccountByAccountNumber(long accountNumber) {
+
+		Connection connection = null;
+		Account account = new Account();
+		try {
+			connection = DBUtill.getConnection();
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from account where account_number=?");
+			preparedStatement.setLong(1, accountNumber);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				account.setIdAccount(rs.getLong("idAccount"));
+				account.setIdCustomer(rs.getLong("idCustomer"));
+				account.setCustomerName(rs.getString("customer"));
+				account.setAccountNumber(rs.getLong("account_number"));
+				account.setAccountType(rs.getString("account_type"));
+				account.setCurrency(rs.getString("account_currency"));
+				account.setBalance(rs.getBigDecimal("balance"));
+				account.setCreated(rs.getTimestamp("created"));
+				account.setUpdated(rs.getTimestamp("updated"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtill.closeConnection(connection);
+		}
+
+		return account;
+	}
+
 }

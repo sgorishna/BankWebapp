@@ -14,6 +14,12 @@
     <form method="POST" action='update_customer.php' name="formUpdateCustomer" >
         Customer ID : <input type="text" readonly="readonly" name="idCustomer"
             value="<c:out value="${customer.idCustomer}" />" /> <br /> 
+             Login : <input
+            type="text" name="login"
+            value="<c:out value="${customer.login}" />" /> <br />
+             Password : <input
+            type="password" name="password"
+            value="<c:out value="${customer.password}" />" /> <br /> 
          Name : <input
             type="text" name="name"
             value="<c:out value="${customer.name}" />" /> <br /> 

@@ -17,9 +17,12 @@ public class DeleteCustomerController extends AbstractServletHandler {
 
 		getCustomerDao().deleteCustomer(Long.parseLong(request.getParameter("IdCustomer")));
 
-		request.setAttribute("customers", getCustomerDao().getAllCustomers());
+		// request.setAttribute("customers",
+		// getCustomerDao().getAllCustomers());
 
-		gotoToJSP("customer/listCustomers.jsp", request, response);
+		// gotoToJSP("customer/listCustomers.jsp", request, response);
+
+		redirectRequest("/customers.php", request, response);
 	}
 
 }
