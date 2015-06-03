@@ -17,6 +17,7 @@
                 <th>Password</th>
                 <th>Name</th>
                 <th>Gender</th>
+               
                 <th>Created</th>
                 <th>Updated</th>
                 <th colspan=3>Action</th>
@@ -28,17 +29,33 @@
                     <td><c:out value="${customer.idCustomer}" /></td>
                     <td><c:out value="${customer.login}" /></td>
                      <td><c:out value="${customer.password}" /></td>
-                    <td><a href="listAccounts.php?IdCustomer=<c:out value="${customer.idCustomer}"/>"><c:out value="${customer.name}" /></a></td>
+                    <td><a href="accountList.php?IdCustomer=<c:out value="${customer.idCustomer}"/>"><c:out value="${customer.name}" /></a></td>
                     <td><c:out value="${customer.gender}" /></td>
+                    
                     <td><c:out value="${customer.created}" /></td>
                     <td><c:out value="${customer.updated}" /></td>
-                    <td><a href="update_customer.php?IdCustomer=<c:out value="${customer.idCustomer}"/>">Update</a></td>
-                    <td><a href="delete_customer.php?IdCustomer=<c:out value="${customer.idCustomer}"/>">Delete</a></td>
-                     <td><a href="add_account.php?IdCustomer=<c:out value="${customer.idCustomer}"/>">Add Account</a></td>
+                    <td><a href="updateCustomer.php?IdCustomer=${customer.idCustomer}">Update</a></td>
+                    
+                    <td><c:choose>
+                    
+                    <c:when test="${customer.idCustomer==sessionScope.CURRENT_SESSION_ACCOUNT.idCustomer}">
+                    Current Account
+                    </c:when>
+                    <c:otherwise>
+                    <a href="deleteCustomer.php?IdCustomer=${customer.idCustomer}" >   Delete </a>
+                    </c:otherwise>
+                    </c:choose>
+                    </td>
+                     
+                  
+                     <td><a href="addAccount.php?IdCustomer=${customer.idCustomer}">Add Account</a></td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
-    <p><a href="new_customer.php">Add Customer</a></p>
+    <p><a href="registerCustomer.php">Register new customer</a></p>
+    <p><a href="home.php">Home</a></p>
+    
+    <script type="text/javascript"> </script>
 </body>
 </html>

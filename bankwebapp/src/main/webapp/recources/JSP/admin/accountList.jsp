@@ -1,4 +1,4 @@
-=<%@page import="com.webapp.dao.AccountDao"%>
+<%@page import="com.webapp.dao.impl.AccountDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -13,19 +13,9 @@
 </head>
 <body>
 
-<%request.setCharacterEncoding("UTF-8");
 
-    long IdCustomer = 0L;
 
-    try {
-    	IdCustomer = Long.parseLong(request.getParameter("IdCustomer"));
-    } catch (Exception ex) {
-        ex.printStackTrace();
-    }
-
-%>
-
-<jsp:useBean id="accountList" class="com.webapp.dao.AccountDao" scope="page"/>
+<jsp:useBean id="accountList" class="com.webapp.dao.impl.AccountDaoImpl" scope="page"/>
     <table border=1>
         <thead>
             <tr>
@@ -44,7 +34,7 @@
 
             <%
 
-            for (Account account : accountList.getAccountByIdCustomer(IdCustomer)) {
+            for (Account account : accountList.findAll()) {
 
         %>
             
@@ -72,5 +62,6 @@
          <%}%>
     </table>
     <p><a href="add_account.php?IdCustomer=<c:out value="${param.IdCustomer}"/>">Add Account</a></p>
+    <p><a href="home.php">Home</a></p>
 </body>
 </html>

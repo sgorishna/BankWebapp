@@ -5,39 +5,49 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<style>
+        <%@include file="/recources/css/style.css" %>
+        <%@include file="/recources/css/bootstrap.min.css" %>
+</style>
 
 <title>Login</title>
 </head>
 <body>
   
-
-    <form action='login.php' method="post" >
-		<table>
-			<tr>
-				<td colspan="2" >Login</td>
-			</tr>
+ <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">Login</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                <form class="form-signin" action='login.php' method="post" >
+                <input type="text" class="form-control" id="login" name="login" placeholder="Login" required autofocus>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+                
+                
+				Select role
+				
+					<select name="role" id="role">
+						<option value="1">Administrator</option>
+						<option value="2">User</option>
+					</select>
+				
 			
-			<tr>
-			
-			<tr>
-				<td>Login</td>
-				<td>
-					<input type="text" name="login" id="login" value="" />
-				</td>
-			</tr>
-			<tr>
-				<td>Password</td>
-				<td>
-					<input type="password" name="password" id="password" />
-				</td>
-			</tr>
-			
-			<tr>
-				<td colspan="2" style="text-align:center;border-top:1px solid gray;">
-					<input type="submit" value="Submit">
-				</td>
-			</tr>
-		</table>
-	</form>
+                
+                <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">
+                    Sign in</button>
+                <label class="checkbox pull-left">
+                    <input type="checkbox" value="remember-me">
+                    Remember me
+                </label>
+                <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                </form>
+            </div>
+            <a href="#" class="text-center new-account">Create an account </a>
+        </div>
+    </div>
+</div>
+  
 </body>
 </html>

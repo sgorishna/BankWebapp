@@ -11,7 +11,7 @@
 <body>
   
 
-    <form method="POST" action='add_account.php' name="formAddAccount" >
+    <form method="POST" action='addAccount.php' name="formAddAccount" >
     <%--  Account ID : <input type="text" readonly="readonly" name="idAccount"
             value="<c:out value="${account.idAccount}" />" /> <br />  --%>
         Customer ID : <input type="text" readonly="readonly" name="idCustomer"

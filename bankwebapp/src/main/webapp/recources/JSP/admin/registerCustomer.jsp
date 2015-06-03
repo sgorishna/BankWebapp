@@ -11,18 +11,17 @@
 <body>
   
 
-    <form method="POST" action='new_customer.php' name="formAddCustomer" >
-       <%--  Customer ID : <input type="text" readonly="readonly" name="idCustomer"
-            value="<c:out value="${customer.idCustomer}" />" /> <br />  --%>
+    <form method="POST" action='registerCustomer.php' name="formAddCustomer" >
+      
              Login : <input
             type="text" name="login"
-            value="<c:out value="${customer.login}" />" /> <br />
+             /> <br />
              Password : <input
             type="password" name="password"
-            value="<c:out value="${customer.password}" />" /> <br /> 
+             /> <br /> 
          Name : <input
             type="text" name="name"
-            value="<c:out value="${customer.name}" />" /> <br /> 
+            /> <br /> 
         Gender :  <input TYPE="radio" NAME="gender" VALUE="male" CHECKED>
              Male
             <br>
@@ -30,7 +29,16 @@
              Female
             <br>
         
-         <br /> <input
+        Role :  <input TYPE="checkbox" NAME="role" VALUE="1" CHECKED>
+            ADMIN
+            <br>
+            <INPUT TYPE="checkbox" NAME="role" VALUE="2">
+             CUSTOMER
+            <br>
+        
+         <br /> 
+         
+         <input
             type="submit" value="Submit" />
     </form>
 </body>

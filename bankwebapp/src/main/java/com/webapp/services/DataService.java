@@ -1,19 +1,25 @@
 package com.webapp.services;
 
+import java.util.List;
+
 import com.sun.media.sound.InvalidDataException;
 import com.webapp.dao.CustomerDao;
+import com.webapp.dao.RoleDao;
 import com.webapp.model.Customer;
+import com.webapp.model.Role;
 
 public class DataService {
 
 	private CustomerDao customerDao;
+	private RoleDao roleDao;
 
-	public DataService(CustomerDao customerDao) {
+	public DataService(CustomerDao customerDao, RoleDao roleDao) {
 
 		this.customerDao = customerDao;
+		this.roleDao = roleDao;
 	}
 
-	public Customer login(String login, String password) throws InvalidDataException {
+	public Customer login(String login, String password, Integer role) throws InvalidDataException {
 
 		Customer customer = customerDao.findByLogin(login);
 
@@ -22,13 +28,18 @@ public class DataService {
 		} else {
 
 			if (password.equals(customer.getPassword())) {
+				List<Role> roles = roleDao.findCustomerRoles(customer);
+				for (Role r : roles) {
+					if (r.getIdRole().equals(role)) {
+						return customer;
+					}
+				}
+				throw new InvalidDataException("Invalid role");
 
-				return customer;
 			} else {
 				throw new InvalidDataException("Invalid password");
 			}
 		}
 
 	}
-
 }

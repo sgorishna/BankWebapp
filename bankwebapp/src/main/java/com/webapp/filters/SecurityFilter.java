@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.webapp.model.Customer;
+import com.webapp.utils.WebappConstants;
 
 @WebFilter(filterName = "securityFilter")
 public class SecurityFilter extends AbstractWebappFilter {
@@ -25,7 +26,7 @@ public class SecurityFilter extends AbstractWebappFilter {
 			return;
 		}
 
-		Customer ob = (Customer) session.getAttribute("customer");
+		Customer ob = (Customer) session.getAttribute(WebappConstants.CURRENT_SESSION_ACCOUNT);
 
 		if (ob != null) {
 			chain.doFilter(request, response);

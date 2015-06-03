@@ -11,7 +11,7 @@
 <body>
   
 
-    <form method="POST" action='update_customer.php' name="formUpdateCustomer" >
+    <form method="POST" action='updateCustomer.php' name="formUpdateCustomer" >
         Customer ID : <input type="text" readonly="readonly" name="idCustomer"
             value="<c:out value="${customer.idCustomer}" />" /> <br /> 
              Login : <input
@@ -28,6 +28,13 @@
             <br>
             <INPUT TYPE="radio" NAME="gender" VALUE="female">
              Female
+            <br>
+            
+              Role :  <input TYPE="checkbox" NAME="role" VALUE="1" CHECKED>
+            ADMIN
+            <br>
+            <INPUT TYPE="checkbox" NAME="role" VALUE="2">
+             CUSTOMER
             <br>
         
          <br /> <input
