@@ -132,13 +132,23 @@ public class AccountDaoImpl implements AccountDao {
 		return account;
 	}
 
-	@Deprecated
-	public void update(Account object) {
+	public void update(Account object) throws UnsupportedOperationException {
+
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+
+		}
 
 	}
 
-	@Deprecated
-	public void delete(Account object) {
+	public void delete(Account object) throws UnsupportedOperationException {
+
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+
+		}
 
 	}
 
@@ -182,8 +192,12 @@ public class AccountDaoImpl implements AccountDao {
 
 	}
 
-	@Deprecated
-	public Account findById(long id) {
+	public Account findById(long id) throws UnsupportedOperationException {
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+
+		}
 
 		return null;
 	}

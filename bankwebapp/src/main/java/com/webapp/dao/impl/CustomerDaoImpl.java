@@ -3,6 +3,7 @@ package com.webapp.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
@@ -189,21 +190,27 @@ public class CustomerDaoImpl implements CustomerDao {
 
 	}
 
-	@Deprecated
-	public void create(Customer object) {
+	public void create(Customer object) throws UnsupportedOperationException {
+
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+
+		}
 
 	}
 
-	public void update(Customer customer, String[] roles) {
+	public void update(Customer customer, String[] selectedRoles) {
 
 		Connection connection = null;
+		ResultSet rs = null;
+		ArrayList<String> roles = new ArrayList<String>();
 
 		try {
 			connection = DBUtill.getConnection();
 			connection.setAutoCommit(false);
 
 			PreparedStatement preparedStatement = connection.prepareStatement("update customer set name=?, gender=?, updated=?, login=?, password=?" + " where idCustomer=?");
-			PreparedStatement preparedStatement2 = connection.prepareStatement("update customer_role ste idRole=? where idCustomer=?");
 
 			preparedStatement.setString(1, customer.getName());
 			preparedStatement.setString(2, customer.getGender());
@@ -213,14 +220,35 @@ public class CustomerDaoImpl implements CustomerDao {
 			preparedStatement.setString(5, customer.getPassword());
 
 			preparedStatement.setLong(6, customer.getIdCustomer());
-			preparedStatement.executeUpdate();
 
-			for (int i = 0; i < roles.length; i++) {
+			PreparedStatement preparedStatement0 = connection.prepareStatement("select idRole from customer_role where idCustomer=" + customer.getIdCustomer());
+			rs = preparedStatement0.executeQuery();
 
-				preparedStatement2.setLong(1, Long.parseLong(roles[i]));
-				preparedStatement2.setLong(2, customer.getIdCustomer());
+			ResultSetMetaData metaData = rs.getMetaData();
+			int columns = metaData.getColumnCount();
+			while (rs.next()) {
+				for (int i = 1; i <= columns; i++) {
+					String value = rs.getString(i);
+					roles.add(value);
+				}
+			}
 
-				preparedStatement2.executeUpdate();
+			String[] customerRoles = roles.toArray(new String[roles.size()]);
+
+			for (int i = 0; i < customerRoles.length; i++) {
+				PreparedStatement ps = connection.prepareStatement("delete from customer_role where idCustomer=" + customer.getIdCustomer() + " and idRole=" + customerRoles[i]);
+				ps.executeUpdate();
+
+			}
+
+			PreparedStatement ps = connection.prepareStatement("insert into customer_role(idCustomer,idRole) values (?, ?)");
+
+			for (int i = 0; i < selectedRoles.length; i++) {
+
+				ps.setLong(1, customer.getIdCustomer());
+				ps.setLong(2, Long.parseLong(selectedRoles[i]));
+
+				ps.executeUpdate();
 			}
 
 			connection.commit();

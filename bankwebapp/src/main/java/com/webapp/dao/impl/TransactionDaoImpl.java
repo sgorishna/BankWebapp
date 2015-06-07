@@ -46,31 +46,47 @@ public class TransactionDaoImpl implements TransactionDao {
 
 	}
 
-	public Transaction findByIdCustomer(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Transaction findByIdCustomer(long id) throws UnsupportedOperationException {
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+			return null;
+		}
 	}
 
-	@Deprecated
-	public void update(Transaction object) {
-		// TODO Auto-generated method stub
+	public void update(Transaction object) throws UnsupportedOperationException {
+
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+
+		}
 
 	}
 
-	@Deprecated
-	public void delete(Transaction object) {
-		// TODO Auto-generated method stub
+	public void delete(Transaction object) throws UnsupportedOperationException {
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+
+		}
 
 	}
 
-	public Transaction findById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Transaction findById(long id) throws UnsupportedOperationException {
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+			return null;
+		}
 	}
 
-	public List<Transaction> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Transaction> findAll() throws UnsupportedOperationException {
+		try {
+			throw new UnsupportedOperationException("Not implemented yet");
+		} catch (java.lang.UnsupportedOperationException e) {
+			return null;
+		}
 	}
 
 }

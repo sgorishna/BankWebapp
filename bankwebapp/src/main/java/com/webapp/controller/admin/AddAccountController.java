@@ -31,6 +31,7 @@ public class AddAccountController extends AbstractServletHandler {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		Account account = new Account();
+
 		account.setIdCustomer(Long.parseLong(request.getParameter("idCustomer")));
 		account.setIdAccountType(Long.parseLong(request.getParameter("accountType")));
 		account.setIdCurrency(Long.parseLong(request.getParameter("currency")));

@@ -8,6 +8,6 @@ public interface CustomerDao extends IEntityDao<Customer> {
 
 	void create(Customer customer, String[] roles);
 
-	void update(Customer customer, String[] roles);
+	void update(Customer customer, String[] selectedRoles);
 
 }

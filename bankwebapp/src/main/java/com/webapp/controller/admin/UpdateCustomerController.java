@@ -34,7 +34,7 @@ public class UpdateCustomerController extends AbstractServletHandler {
 		customer.setPassword(request.getParameter("password"));
 
 		customer.setIdCustomer(Long.parseLong(request.getParameter("idCustomer")));
-		getCustomerDao().update(customer);
+		getCustomerDao().update(customer, selectedRoles);
 
 		redirectRequest("/admin/home.php", request, response);
 
