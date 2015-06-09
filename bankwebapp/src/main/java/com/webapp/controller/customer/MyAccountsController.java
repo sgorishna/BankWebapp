@@ -21,7 +21,10 @@ public class MyAccountsController extends AbstractServletHandler {
 		Customer c = (Customer) request.getSession().getAttribute(CURRENT_SESSION_ACCOUNT);
 		long idAccount = c.getIdCustomer();
 
-		request.setAttribute("accounts", getAccountDao().getAccountByIdCustomer(idAccount));
+		request.getSession().setAttribute("accounts", getAccountDao().getAccountByIdCustomer(idAccount));
+
+		// request.setAttribute("accounts",
+		// getAccountDao().getAccountByIdCustomer(idAccount));
 
 		gotoToJSP("customer/myAccounts.jsp", request, response);
 
