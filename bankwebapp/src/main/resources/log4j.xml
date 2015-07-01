@@ -20,7 +20,8 @@
   		</layout>
 	</appender>
 	
-	<logger name="com.webapp.services.DataService">
-		<level value="DEBUG" />
+	<logger name="com.webapp.actions.LoginController">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" /> 
 	</logger>
 	</log4j:configuration>
