@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.webapp.exceptions.InvalidDataException;
 import com.webapp.model.Customer;
 import com.webapp.model.Role;
@@ -17,9 +19,11 @@ import com.webapp.model.Role;
 @WebServlet("/login.php")
 public class LoginController extends AbstractServletHandler {
 
+	static Logger log = Logger.getLogger(LoginController.class.getName());
+
 	private static final long serialVersionUID = 1L;
 
-	private final Map<Integer, String> homePages = new HashMap<Integer, String>();
+	private final transient Map<Integer, String> homePages = new HashMap<Integer, String>();
 
 	public LoginController() {
 
@@ -56,10 +60,12 @@ public class LoginController extends AbstractServletHandler {
 				redirectRequest(homePage, request, response);
 
 			} else {
+
 				throw new InvalidDataException("Unsupported role id " + role);
 			}
 
 		} catch (InvalidDataException e) {
+			log.info("Invalid credentials", e);
 			gotoToJSP("login.jsp", request, response);
 
 		}

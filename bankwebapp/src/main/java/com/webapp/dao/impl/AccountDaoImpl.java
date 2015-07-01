@@ -9,14 +9,17 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import com.webapp.dao.AccountDao;
 import com.webapp.db.DBUtill;
 import com.webapp.model.Account;
 
 public class AccountDaoImpl implements AccountDao {
+
+	private static final long serialVersionUID = 1L;
 
 	public void create(Account account) {
 
@@ -35,7 +38,7 @@ public class AccountDaoImpl implements AccountDao {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -46,7 +49,7 @@ public class AccountDaoImpl implements AccountDao {
 
 		Connection connection = null;
 
-		ArrayList<Account> accountList = new ArrayList<Account>();
+		List<Account> accountList = new ArrayList<Account>();
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -75,7 +78,7 @@ public class AccountDaoImpl implements AccountDao {
 			}
 
 		} catch (SQLException ex) {
-			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, ex);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -96,7 +99,7 @@ public class AccountDaoImpl implements AccountDao {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(conn);
 		}
@@ -124,7 +127,7 @@ public class AccountDaoImpl implements AccountDao {
 				account.setUpdated(rs.getTimestamp("updated"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -137,6 +140,7 @@ public class AccountDaoImpl implements AccountDao {
 		try {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 
 		}
 
@@ -147,6 +151,7 @@ public class AccountDaoImpl implements AccountDao {
 		try {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 
 		}
 
@@ -156,7 +161,7 @@ public class AccountDaoImpl implements AccountDao {
 
 		Connection connection = null;
 
-		ArrayList<Account> accountList = new ArrayList<Account>();
+		List<Account> accountList = new ArrayList<Account>();
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -183,7 +188,7 @@ public class AccountDaoImpl implements AccountDao {
 			}
 
 		} catch (SQLException ex) {
-			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, ex);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -196,6 +201,7 @@ public class AccountDaoImpl implements AccountDao {
 		try {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
+			Logger.getLogger(AccountDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 
 		}
 

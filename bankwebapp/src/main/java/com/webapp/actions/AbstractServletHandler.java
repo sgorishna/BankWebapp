@@ -1,6 +1,7 @@
 package com.webapp.actions;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,15 +19,15 @@ import com.webapp.dao.impl.TransactionDaoImpl;
 import com.webapp.services.DataService;
 import com.webapp.utils.WebappConstants;
 
-public abstract class AbstractServletHandler extends HttpServlet implements WebappConstants {
+public abstract class AbstractServletHandler extends HttpServlet implements WebappConstants, Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private CustomerDao customerDao;
-	private AccountDao accountDao;
-	private TransactionDao transactionDao;
-	private RoleDao roleDao;
+	private static CustomerDao customerDao;
+	private static AccountDao accountDao;
+	private static TransactionDao transactionDao;
+	private static RoleDao roleDao;
 
-	private DataService dataService;
+	private static DataService dataService;
 
 	public AbstractServletHandler() {
 

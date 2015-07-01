@@ -16,6 +16,8 @@ import com.webapp.model.Role;
 
 public class RoleDaoImpl implements RoleDao {
 
+	private static final long serialVersionUID = 1L;
+
 	public List<Role> findAll() {
 		Connection connection = null;
 
@@ -50,7 +52,7 @@ public class RoleDaoImpl implements RoleDao {
 	public List<Role> findCustomerRoles(Customer c) {
 		Connection connection = null;
 
-		ArrayList<Role> roleList = new ArrayList<Role>();
+		List<Role> roleList = new ArrayList<Role>();
 
 		Statement stmt = null;
 		ResultSet rs = null;

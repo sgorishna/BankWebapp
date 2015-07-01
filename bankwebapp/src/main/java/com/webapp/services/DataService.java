@@ -2,9 +2,9 @@ package com.webapp.services;
 
 import java.util.List;
 
-import com.sun.media.sound.InvalidDataException;
 import com.webapp.dao.CustomerDao;
 import com.webapp.dao.RoleDao;
+import com.webapp.exceptions.InvalidDataException;
 import com.webapp.model.Customer;
 import com.webapp.model.Role;
 
@@ -34,9 +34,11 @@ public class DataService {
 						return customer;
 					}
 				}
+
 				throw new InvalidDataException("Invalid role");
 
 			} else {
+
 				throw new InvalidDataException("Invalid password");
 			}
 		}

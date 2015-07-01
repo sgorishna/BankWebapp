@@ -4,13 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.List;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import com.webapp.dao.TransactionDao;
 import com.webapp.db.DBUtill;
 import com.webapp.model.Transaction;
 
 public class TransactionDaoImpl implements TransactionDao {
+
+	private static final long serialVersionUID = 1L;
 
 	public void create(Transaction transaction) {
 
@@ -37,9 +43,9 @@ public class TransactionDaoImpl implements TransactionDao {
 			try {
 				conn.rollback();
 			} catch (SQLException ex) {
+				Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.DEBUG, null, ex);
 			}
-
-			e.printStackTrace();
+			Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(conn);
 		}
@@ -50,6 +56,7 @@ public class TransactionDaoImpl implements TransactionDao {
 		try {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
+			Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 			return null;
 		}
 	}
@@ -60,6 +67,7 @@ public class TransactionDaoImpl implements TransactionDao {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
 
+			Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		}
 
 	}
@@ -69,6 +77,7 @@ public class TransactionDaoImpl implements TransactionDao {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
 
+			Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		}
 
 	}
@@ -77,6 +86,7 @@ public class TransactionDaoImpl implements TransactionDao {
 		try {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
+			Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 			return null;
 		}
 	}
@@ -85,7 +95,8 @@ public class TransactionDaoImpl implements TransactionDao {
 		try {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
-			return null;
+			Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.DEBUG, null, e);
+			return Collections.emptyList();
 		}
 	}
 

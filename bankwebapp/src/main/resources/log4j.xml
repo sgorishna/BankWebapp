@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+	
+	<appender name="FILE" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" 				value="/log.out"/>
+		<param name="MaxFileSize" 		value="10000KB"/>
+		<param name="MaxBackupIndex" 	value="10"/>
+		<param name="Append" 			value="true"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="bankwebapp>> %d{dd MMM yyyy HH:mm:ss,SSS} %-5p [%t] (%c{1}) %m%n"/>
+		</layout>	    
+	</appender>
+	
+	
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" 			value="System.out"/>
+      	<layout class="org.apache.log4j.PatternLayout">
+        	<param name="ConversionPattern" value="bankwebapp>> %d{dd MMM yyyy HH:mm:ss,SSS} %-5p [%t] (%c{1}) %m%n"/>
+  		</layout>
+	</appender>
+	
+	<logger name="com.webapp.services.DataService">
+		<level value="DEBUG" />
+	</logger>
+	</log4j:configuration>

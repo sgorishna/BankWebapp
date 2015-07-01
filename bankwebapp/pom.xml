@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.test</groupId>
-  <artifactId>webapp</artifactId>
+  <artifactId>bankwebapp</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
   <name>webapp Maven Webapp</name>
@@ -21,6 +21,14 @@
         <version>3.0.1</version>
         <scope>provided</scope>
 </dependency>
+
+<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		
+		
 
 <dependency>
 			<groupId>mysql</groupId>
@@ -49,7 +57,56 @@
 	
     
   </dependencies>
+  
   <build>
-    <finalName>webapp</finalName>
-  </build>
+		<finalName>bankwebapp</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<!-- clean -->
+					<execution>
+						<id>clean-lib</id>
+						<phase>clean</phase>
+						<configuration>
+							<tasks>
+								<delete dir="${basedir}/src/main/webapp/WEB-INF/lib" />
+
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<!-- build -->
+					<execution>
+						<id>copy-lib</id>
+						<phase>install</phase>
+						<configuration>
+							<tasks>
+								<copy todir="${basedir}/src/main/webapp/WEB-INF/lib">
+									<fileset
+										dir="${basedir}/target/${project.build.finalName}/WEB-INF/lib" />
+								</copy>
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+  
 </project>

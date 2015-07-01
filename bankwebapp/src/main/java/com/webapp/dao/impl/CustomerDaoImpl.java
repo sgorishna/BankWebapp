@@ -9,14 +9,17 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 import com.webapp.dao.CustomerDao;
 import com.webapp.db.DBUtill;
 import com.webapp.model.Customer;
 
 public class CustomerDaoImpl implements CustomerDao {
+
+	private static final long serialVersionUID = 1L;
 
 	public void create(Customer customer, String[] roles) {
 
@@ -52,9 +55,9 @@ public class CustomerDaoImpl implements CustomerDao {
 				connection.rollback();
 			} catch (SQLException e1) {
 
-				e1.printStackTrace();
+				Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e1);
 			}
-			e.printStackTrace();
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -64,7 +67,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	public List<Customer> findAll() {
 		Connection connection = null;
 
-		ArrayList<Customer> customerList = new ArrayList<Customer>();
+		List<Customer> customerList = new ArrayList<Customer>();
 
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -87,7 +90,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			}
 
 		} catch (SQLException ex) {
-			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, ex);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -115,7 +118,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				customer.setPassword(rs.getString("password"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -132,7 +135,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(conn);
 		}
@@ -155,7 +158,7 @@ public class CustomerDaoImpl implements CustomerDao {
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(conn);
 		}
@@ -181,7 +184,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				customer.setUpdated(rs.getTimestamp("updated"));
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}
@@ -195,6 +198,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		try {
 			throw new UnsupportedOperationException("Not implemented yet");
 		} catch (java.lang.UnsupportedOperationException e) {
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 
 		}
 
@@ -204,7 +208,7 @@ public class CustomerDaoImpl implements CustomerDao {
 
 		Connection connection = null;
 		ResultSet rs = null;
-		ArrayList<String> roles = new ArrayList<String>();
+		List<String> roles = new ArrayList<String>();
 
 		try {
 			connection = DBUtill.getConnection();
@@ -258,9 +262,9 @@ public class CustomerDaoImpl implements CustomerDao {
 				connection.rollback();
 			} catch (SQLException e1) {
 
-				e1.printStackTrace();
+				Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e1);
 			}
-			e.printStackTrace();
+			Logger.getLogger(CustomerDaoImpl.class.getName()).log(Level.DEBUG, null, e);
 		} finally {
 			DBUtill.closeConnection(connection);
 		}

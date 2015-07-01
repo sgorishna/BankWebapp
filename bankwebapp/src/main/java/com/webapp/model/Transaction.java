@@ -1,10 +1,13 @@
 package com.webapp.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.sun.jmx.snmp.Timestamp;
 
-public class Transaction {
+public class Transaction implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private long idTransaction;
 

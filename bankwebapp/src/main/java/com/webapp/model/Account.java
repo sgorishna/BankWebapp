@@ -1,10 +1,12 @@
 package com.webapp.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 
-public class Account {
+public class Account implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long idAccount;
 	private long idCustomer;
 	private String сustomerName;

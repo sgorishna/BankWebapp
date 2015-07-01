@@ -1,7 +1,10 @@
 package com.webapp.model;
 
-public class CustomerRole {
+import java.io.Serializable;
 
+public class CustomerRole implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private Long idCustomerRole;
 	private Long idCustomer;
 	private Long idRole;
